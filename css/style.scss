@@ -1,0 +1,381 @@
+@charset "utf-8" ;
+
+/* デフォルト */
+
+/* レスポンシブ設定 */
+
+$breakpoints: (
+    "ssp" : "screen and (max-width:320px)",
+    "sp" : "screen and (max-width:540px)",
+    "tb" : "screen and (max-width:768px)",
+    "mb" : "screen and (max-width:900px)",
+    "nb" : "screen and (max-width:1024px)",
+) !default;
+
+@mixin pc($breakpoint :nb){
+  @media #{map-get($breakpoints, $breakpoint)} {
+      @content;
+  }
+}
+
+@media screen and (min-width:541px){
+  .sp{display:none;}
+}
+@media screen and (max-width:540px){
+  .pc{display:none;}
+}
+
+@media screen and (min-width:769px){
+  .tb{display:none;}
+}
+@media screen and (max-width:768px){
+  .nb{display:none;}
+}
+
+/* リセットCSS */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+  
+body{
+  /* デフォルトのフォントと文字カラー設定 */
+  font-family: '游ゴシック', sans-serif;
+  color:#000000;
+  text-align: center;
+}
+
+p{
+  font-size: 18px;
+  line-height: 1.7;
+  text-align: justify;
+  text-justify: inter-ideograph;
+  text-align: center;
+  @include pc(sp){
+    font-size:16px;
+  }
+}
+
+a{
+    text-decoration: none;
+    margin: 0 auto;
+}
+
+img{
+    width: 100%;
+    display: block;
+}
+
+section{
+    padding: 60px 0 90px;
+    @include pc(sp){
+        padding: 50px 0 70px;
+    }
+}
+
+.container{
+    max-width: 960px;
+    width: 66%;
+    margin: 0 auto;
+    @include pc(sp){
+        max-width: 340px;
+        width: 90%;
+    }
+    &-sub{
+        max-width: 816px;
+        width: 56%;
+        margin: 0 auto;
+        @include pc(sp){
+            max-width: 340px;
+            width: 90%;
+        }
+    }
+}
+
+h2{
+    text-align: center;
+    font-size: 30px;
+    color: #445F65;
+    font-weight: bold;
+    margin:70px auto 50px;
+    position: relative;
+    line-height: 1.3;
+    @include pc(sp){
+        font-size: 22px;
+        margin: 60px auto 25px;
+    }
+    &::before{
+        position: absolute;
+        content: '';
+        background: url(../img/h2-img.png);
+        width: 86px;
+        height: 71px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        top: -75px;
+        left: 50%;
+        transform: translateX(-50%);
+        @include pc(sp){
+            width: 58px;
+            height: 48px;
+            top: -55px;
+        }
+    }
+    & span{
+        font-size: 20px;
+        @include pc(sp){
+            font-size: 18px;
+        }
+    }
+}
+
+// 各セクション
+
+header{
+    padding: 20px 50px;
+    @include pc(sp){
+        padding: 15px 10px;
+    }
+    & nav{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        & a{
+            margin-left: 0px;
+            &.logo{
+                width: 200px;
+                @include pc(sp){
+                    width: 117px;
+                }
+            }
+        }
+        & ul{
+            display: flex;
+            width: 25%;
+            justify-content: center;
+            gap: 20px;
+            @include pc(sp){
+                width: 80%;
+                gap: 5px;
+            }
+            & a{
+                width: 45%;
+            & li{
+                padding: 6px 0;
+                text-align: center;
+                list-style: none;
+                border-radius: 100px;
+                font-size: 17px;
+                border: 3px solid #00B9BF;
+                font-weight: bold;
+                background-color: #00B9BF;
+                color: white;
+                @include pc(sp){
+                    font-size: 14px;
+                    border: 2px solid #00B9BF;
+                }
+                &.signin{
+                    background-color: white;
+                    color: #00B9BF;
+                }
+                }
+            }
+        }
+    }
+}
+
+
+.merit{
+    background: url(../img/merit-bg.png);
+    background-size: cover;
+    @include pc(sp){
+        background: url(../img/merit-bg-sp.png);
+        background-size: cover;
+    }
+    & img{
+        @include pc(sp){
+            margin: 25px auto 60px;
+        }
+        &.merit{
+            margin-top: 110px;
+            @include pc(sp){
+                margin: 0px auto;
+            }
+        }
+    }
+}
+
+.function{
+    background-color: #F5FBFB;
+    & h2{
+        margin-bottom: 60px;
+        @include pc(sp){
+            margin-bottom: 30px;
+        }
+    }
+    & .box{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0 30px;
+        & .ex{
+            width: 45%;
+            margin-bottom: 50px;
+            @include pc(sp){
+                width: 100%;
+                margin-bottom: 45px;
+            }
+            &:last-child{
+                margin-bottom: 0;
+            }
+            & img{
+                margin-bottom: 25px;
+            }
+            & p{
+                font-size: 22px;
+                font-weight: bold;
+                @include pc(sp){
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+}
+
+.price{
+    & h2{
+        margin-bottom: 30px;
+    }
+    & p{
+        margin-bottom: 50px;
+        @include pc(sp){
+            margin-bottom: 30px;
+        }
+    }
+}
+
+.cta{
+    background: url(../img/cta-bg.png);
+    background-size: cover;
+    padding: 100px 0;
+    @include pc(sp){
+        background: url(../img/cta-bg-sp.png);
+        background-size: cover;
+        padding: 60px 0 80px;
+    }
+    & .flex{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 25px;
+        @include pc(sp){
+            display: block;
+        }
+        & img{
+            width: 47%;
+            @include pc(sp){
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+        & .text{
+            & h2{
+                position: static;
+                color: #000000;
+                text-align: left;
+                margin-bottom: 20px;
+                margin-top: 0px;
+            }
+            & p{
+                margin-bottom: 35px;
+                text-align: justify;
+                @include pc(sp){
+                    text-align: justify;
+                    margin-bottom: 40px;
+                }
+            }
+            & a{
+                display: block;
+                &.button{
+                    text-align: center;
+                    font-weight: bold;
+                    color: white;
+                    font-size: 20px;
+                    width: 100%;
+                    padding: 15px 0;
+                    background-color: #F09400;
+                    border: 3px solid #F0AF00;
+                    box-shadow: 0px 0px 6px rgba(0,0,0,0.16);
+                    border-radius: 100px;
+                }
+            }
+        }
+        & h2{
+            @include pc(sp){
+                margin-top: 0px;
+                margin-bottom: 25px;
+                position: static;
+                color: #000000;
+            }
+        }
+    }
+}
+
+footer{
+    background: #404F53;
+    padding: 35px 0 30px;
+    & .flex{
+        max-width: 580px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        margin:0 auto 30px;
+        @include pc(sp){
+            display: block;
+        }   
+        & img{
+            width: 45%;
+            @include pc(sp){
+                width: 80%;
+                margin: 0 auto 10px;
+            }
+        }
+        & p{
+            text-align: justify;
+            font-size: 15px;
+            color: white;
+            @include pc(sp){
+                text-align: center;
+            }
+        }
+    }
+    & .border{
+        width: 100%;
+        border-top: 1px solid white;
+    }
+    & .flex02{
+        display: flex;
+        width: 80%;
+        flex-wrap: wrap;
+        margin: 30px auto 0;
+        @include pc(sp){
+            width: 100%;
+        }
+        & a{
+            color: white;
+            padding: 0 5px;
+            font-size: 15px;
+        }
+    }
+    & .copyright{
+        margin-top: 10px;
+        & p{
+            color: white;
+            font-size: 14px;
+        }
+    }
+}
