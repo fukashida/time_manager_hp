@@ -1,39 +1,41 @@
-@charset "utf-8" ;
-
 /* デフォルト */
-
-/* レスポンシブ設定 */
-
-$breakpoints: (
-    "ssp" : "screen and (max-width:320px)",
-    "sp" : "screen and (max-width:540px)",
-    "tb" : "screen and (max-width:768px)",
-    "mb" : "screen and (max-width:900px)",
-    "nb" : "screen and (max-width:1024px)",
-) !default;
-
-@mixin pc($breakpoint :nb){
-  @media #{map-get($breakpoints, $breakpoint)} {
-      @content;
+@charset "utf-8";
+  
+  /* レスポンシブ設定 */
+  
+  $breakpoints: (
+      "ssp" : "screen and (max-width:320px)",
+      "sp" : "screen and (max-width:540px)",
+      "tb" : "screen and (max-width:680px)",
+      "mb" : "screen and (max-width:940px)",
+      "nb" : "screen and (max-width:1024px)",
+      "np" : "screen and (max-width:1440px)",
+  ) !default;
+  
+  @mixin pc($breakpoint :nb){
+    @media #{map-get($breakpoints, $breakpoint)} {
+        @content;
+    }
   }
-}
-
-@media screen and (min-width:541px){
-  .sp{display:none;}
-}
-@media screen and (max-width:540px){
-  .pc{display:none;}
-}
-
-@media screen and (min-width:769px){
-  .tb{display:none;}
-}
-@media screen and (max-width:768px){
-  .nb{display:none;}
-}
-
+  
+  @media screen and (min-width:321px){
+    .ssp{display:none;}
+  }
+  @media screen and (min-width:541px){
+    .sp{display:none;}
+  }
+  @media screen and (max-width:540px){
+    .pc{display:none;}
+  }
+  
+  @media screen and (min-width:769px){
+    .tb{display:none;}
+  }
+  @media screen and (max-width:768px){
+    .nb{display:none;}
+  }
+  
 /* リセットCSS */
-
 *{
   margin:0;
   padding:0;
@@ -42,7 +44,7 @@ $breakpoints: (
   
 body{
   /* デフォルトのフォントと文字カラー設定 */
-  font-family: '游ゴシック', sans-serif;
+  font-family: 'yugothic', 'yu gothic', sans-serif;
   color:#000000;
   text-align: center;
 }
@@ -77,15 +79,18 @@ section{
 
 .container{
     max-width: 960px;
-    width: 66%;
+    width: 100%;
     margin: 0 auto;
+    @include pc(mb){
+        width: 90%;
+    }
     @include pc(sp){
         max-width: 340px;
         width: 90%;
     }
     &-sub{
         max-width: 816px;
-        width: 56%;
+        width: 80%;
         margin: 0 auto;
         @include pc(sp){
             max-width: 340px;
@@ -135,7 +140,7 @@ h2{
 // 各セクション
 
 header{
-    padding: 20px 50px;
+    padding: 20px 30px;
     @include pc(sp){
         padding: 15px 10px;
     }
@@ -144,7 +149,7 @@ header{
         align-items: center;
         justify-content: space-between;
         & a{
-            margin-left: 0px;
+            margin: 0;
             &.logo{
                 width: 200px;
                 @include pc(sp){
@@ -154,16 +159,16 @@ header{
         }
         & ul{
             display: flex;
-            width: 25%;
             justify-content: center;
             gap: 20px;
             @include pc(sp){
                 width: 80%;
                 gap: 5px;
+                justify-content: right;
             }
             & a{
-                width: 45%;
             & li{
+                width: 160px;
                 padding: 6px 0;
                 text-align: center;
                 list-style: none;
@@ -174,8 +179,13 @@ header{
                 background-color: #00B9BF;
                 color: white;
                 @include pc(sp){
+                    width: 110px;
+                    padding: 3px 0;
                     font-size: 14px;
                     border: 2px solid #00B9BF;
+                }
+                @include pc(ssp){
+                    width: 90px;
                 }
                 &.signin{
                     background-color: white;
@@ -247,7 +257,7 @@ header{
 
 .price{
     & h2{
-        margin-bottom: 30px;
+        margin-bottom: 10px;
     }
     & p{
         margin-bottom: 50px;
